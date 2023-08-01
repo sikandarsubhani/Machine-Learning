@@ -63,3 +63,23 @@ print(len(train[train['class']==0]))
 train, X_train, y_train = scale_dataset(train, oversample=True)
 valid, X_valid, y_valid = scale_dataset(valid, oversample=False)
 test, X_test, y_test = scale_dataset(test, oversample=False)
+
+
+#---------------------------------------
+# Naive Bayes
+
+# Import the GaussianNB class from scikit-learn
+from sklearn.naive_bayes import GaussianNB
+
+# Create an instance of the Gaussian Naive Bayes classifier
+nb_model = GaussianNB()
+
+# Train the Naive Bayes classifier on the training data
+nb_model = nb_model.fit(X_train, y_train)
+
+# Use the trained model to make predictions on the test data
+y_pred = nb_model.predict(X_test)
+
+# Print the classification report to evaluate the model's performance
+# The classification report displays precision, recall, F1-score, and support for each class (0 and 1 in this case)
+print(classification_report(y_test, y_pred))
